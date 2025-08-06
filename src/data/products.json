@@ -1,0 +1,79 @@
+[
+     {
+          "id": 6,
+          "title": "macbook pro ",
+          "description": "macbook apple ",
+          "code": "40",
+          "price": 800,
+          "status": true,
+          "stock": 5,
+          "category": "notebooks",
+          "thumbnails": []
+     },
+     {
+          "id": 7,
+          "title": "samsung galaxy s25 ultra",
+          "description": "s25 ultra 1tb",
+          "code": "50",
+          "price": 1500,
+          "status": true,
+          "stock": 3,
+          "category": "celulares",
+          "thumbnails": []
+     },
+     {
+          "id": 8,
+          "title": "samsung galaxy s24 ultra",
+          "description": "s24 ultra 1TB",
+          "code": "60",
+          "price": 1300,
+          "status": true,
+          "stock": 5,
+          "category": "celulares",
+          "thumbnails": []
+     },
+     {
+          "id": 9,
+          "title": "samsung fold",
+          "description": "samsung 1 tb almacenamiento",
+          "code": "80",
+          "price": 2000,
+          "status": true,
+          "stock": 5,
+          "category": "celulares",
+          "thumbnails": []
+     },
+     {
+          "id": 10,
+          "title": "iPhone 15 Pro",
+          "description": "iPhone 15 256gb",
+          "code": "20",
+          "price": 1500,
+          "status": true,
+          "stock": 5,
+          "category": "celulares",
+          "thumbnails": []
+     },
+     {
+          "id": 11,
+          "title": "iPhone 16 Pro",
+          "description": "iPhone 16 256gb",
+          "code": "500",
+          "price": 1500,
+          "status": true,
+          "stock": 5,
+          "category": "celulares",
+          "thumbnails": []
+     },
+     {
+          "id": 12,
+          "title": "notebook asus tuf gamer",
+          "description": "notebook gamer",
+          "code": "100",
+          "price": 2500,
+          "status": true,
+          "stock": 5,
+          "category": "notebooks",
+          "thumbnails": []
+     }
+]
