@@ -11,33 +11,11 @@
           "thumbnails": []
      },
      {
-          "id": 7,
-          "title": "samsung galaxy s25 ultra",
-          "description": "s25 ultra 1tb",
-          "code": "50",
-          "price": 1500,
-          "status": true,
-          "stock": 3,
-          "category": "celulares",
-          "thumbnails": []
-     },
-     {
           "id": 8,
           "title": "samsung galaxy s24 ultra",
           "description": "s24 ultra 1TB",
           "code": "60",
           "price": 1300,
-          "status": true,
-          "stock": 5,
-          "category": "celulares",
-          "thumbnails": []
-     },
-     {
-          "id": 9,
-          "title": "samsung fold",
-          "description": "samsung 1 tb almacenamiento",
-          "code": "80",
-          "price": 2000,
           "status": true,
           "stock": 5,
           "category": "celulares",
@@ -74,6 +52,59 @@
           "status": true,
           "stock": 5,
           "category": "notebooks",
+          "thumbnails": []
+     },
+     {
+          "id": 13,
+          "title": "samsung s25 ultra",
+          "code": "PRS25U",
+          "price": 1355,
+          "status": true,
+          "stock": 50,
+          "category": "Electrónica",
+          "thumbnails": []
+     },
+     {
+          "id": 14,
+          "title": "PS5 PRO",
+          "code": "PS501",
+          "price": 700,
+          "status": true,
+          "stock": 10,
+          "category": "Electrónica",
+          "thumbnails": []
+     },
+     {
+          "id": 15,
+          "title": "iPhone 14 Pro",
+          "description": "El último modelo",
+          "code": "iphone14pro",
+          "price": 1500,
+          "status": true,
+          "stock": 10,
+          "category": "celulares",
+          "thumbnails": []
+     },
+     {
+          "id": 16,
+          "title": "Cargador apple",
+          "description": "cargador original",
+          "code": "carapp",
+          "price": 100,
+          "status": true,
+          "stock": 500,
+          "category": "accesorios",
+          "thumbnails": []
+     },
+     {
+          "id": 17,
+          "title": "samsung s22 ultra",
+          "description": "12gb ram",
+          "code": "s22u",
+          "price": 1300,
+          "status": true,
+          "stock": 5,
+          "category": "celulares",
           "thumbnails": []
      }
 ]

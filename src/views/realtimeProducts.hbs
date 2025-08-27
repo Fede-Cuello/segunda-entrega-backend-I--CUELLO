@@ -1,0 +1,11 @@
+<h2>realtimeProducts</h2>
+<hr>
+
+<ul id="products">
+    {{#each products}}
+        <li data-id="{{id}}">{{title}} ${{price}}</li>
+    {{/each}}
+</ul>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/rtp.js"></script>
