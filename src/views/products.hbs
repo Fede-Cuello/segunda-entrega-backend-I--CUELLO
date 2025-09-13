@@ -1,8 +1,34 @@
 <h2>Products</h2>
 <hr>
 
+<strong class="current-page">{{page}}</strong>
+
+<label for="cartId">Ingrese el id del carrito creado previamente</label>
+<input type="text" id="cartId" placeholder="ej:68c597492c064b1aea942b53" />
+
 <ul>
     {{#each products}}
-        <li> {{title}} ${{price}}</li>
+        <li> 
+            <span>{{title}} ${{price}}</span>
+            <button onclick="addToCart('{{this._id}}')">Agregar al carrito</button>
+        </li>
     {{/each}}
 </ul>
+
+<div class="pagination">
+    <a href="/products?page=1">Pagina 1</a>
+
+    {{#if hasPrevPage}}
+        <a href="/products?page={{prevPage}}">Anterior</a>
+    {{/if}}
+
+    {{#if hasNextPage}}
+        <a href="/products?page={{nextPage}}">Siguiente</a>
+    {{/if}}
+
+    <a href="/products?page={{totalPages}}">Ultima pagina</a>
+</div>
+
+
+<script src="/js/products.js"></script>
+

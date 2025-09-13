@@ -1,10 +1,11 @@
 const { Router } = require("express")
-const { CartsManager } = require("../dao/CartsManager")
-const { ProductsManager } = require("../dao/ProductsManager")
+const { CartsMongoManager: CartsManager ,} = require("../dao/CartsMongoManager")
+const { ProductsMongoManager: ProductsManager, } = require("../dao/ProductsMongoManager")
+const validateObjectId= require("../middlewares/validateObjectId")
+
 
 const router = Router()
 
-CartsManager.rutaCarts = "./src/data/carts.json"
 
 router.get("/", async (req, res) => {
   try {
@@ -35,60 +36,76 @@ router.post("/", async (req, res) => {
     }
 })
 
-router.get("/:cid", async (req, res) => {
-    try {
-        let { cid } = req.params
-        let cart = await CartsManager.getCartById(cid)
+router.get("/:cid", validateObjectId("cid"), async (req, res) => {
+  try {
+    let { cid } = req.params;
+    let cart = await CartsManager.getCartById(cid)
 
     if (!cart) {
-        return res
-            .status(404)
-            .json({ message: `No existe el carrito con ID ${cid}` })
-  }
+      return res
+        .status(404)
+        .json({ message: `No existe el carrito con ID ${cid}` })
+    }
     res.setHeader("Content-type", "application/json")
     res.status(200).json(cart.products)
-    } catch (error) {
-        console.error("Error obteniendo carrito", error)
-        res.status(500).json({ message: "Error al obtener el carrito" })
-    }
-})
-
-router.post("/:cid/product/:pid", async (req, res) => {
-    try {
-        let { cid, pid } = req.params
-        
-        let product = await ProductsManager.getProductsById(pid)
-
-        if (!product) {
-            return res
-                .status(404)
-                .json({ message: `El producto con id ${pid} no existe` })
-        }
-
-        let updatedCart = await CartsManager.addProductToCart (cid ,pid)
-
-        if (!updatedCart) {
-            return res
-                .status(404)
-                .json({ message: `No se encontro carrito con id ${cid} ` })
+  } catch (error) {
+    console.error("Error obteniendo carrito", error)
+    res.status(500).json({ message: "Error al obtener el carrito" })
   }
-
-        res.status(201).json({
-            message: `Producto agregado al carrito ${cid}`,
-            cart: updatedCart,
-  }) 
-    } catch (error) {
-        console.error("Error agregando producto al carrito", error)
-        res
-          .status(500)
-          .json({ message: "Error al agregar producto al carrito" })
-    }
 })
 
+router.post(
+  "/:cid/product/:pid",
+  validateObjectId("pid"),
+  validateObjectId("cid"),
+  async (req, res) => {
+    try {
+      let { cid, pid } = req.params
 
-router.delete("/:cid", async (req, res) => {
+      let product = await ProductsManager.getProductById(pid)
+
+      if (!product) {
+        return res
+          .status(404)
+          .json({ message: `El producto con id ${pid} no existe` })
+      }
+
+      let cart = await CartsManager.getCartById(cid)
+
+      if (!cart) {
+        return res
+          .status(404)
+          .json({ message: `No se encontro carrito con id ${cid} ` })
+      }
+
+      let productIndex = cart.products.findIndex(
+        (p) => p.product._id.toString() === pid
+      )
+
+      if (productIndex !== -1) {
+        cart.products[productIndex].quantity =
+          (cart.products[productIndex].quantity || 1) + 1
+      } else {
+        cart.products.push({ product: pid, quantity: 1 })
+      }
+
+      let updatedCart = await CartsManager.addProductToCart(cid, cart.products)
+
+      res.status(201).json({
+        message: `Producto agregado al carrito ${cid}`,
+        cart: updatedCart,
+      });
+    } catch (error) {
+      console.error("Error agregando producto al carrito", error)
+      res.status(500).json({ message: "Error al agregar producto al carrito" })
+    }
+  }
+)
+
+
+router.delete("/:cid", validateObjectId("cid"), async (req, res) => {
   try {
-    let { cid } = req.params
+    let { cid } = req.params;
     let deletedCart = await CartsManager.deleteCart(cid)
 
     if (!deletedCart) {
